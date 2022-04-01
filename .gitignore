@@ -1,5 +1,9 @@
-# Trained models
-*/models/
+# Trained models and data
+*.pth.tar
+*.pt
+*.png
+ResNet/data/
+
 
 
 # Byte-compiled / optimized / DLL files

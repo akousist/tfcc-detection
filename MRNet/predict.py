@@ -44,9 +44,9 @@ def extract_predictions(root, plane, num_classes, batch_size):
     tfcc_data = pd.read_csv(Path(root, f'excel/valid.csv'))
     tfcc_path = Path(root, f'data/{plane}_t1')
 
-    model_path = Path(root, f'model/{plane}/RangerLarsR/tfcc_prediction.pt')
+    model_path = Path(root, f'MRNet/models/{plane}/RangerLarsR/tfcc_prediction.pt')
 
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')    #'cuda:0' if torch.cuda.is_available() else 
 
     if torch.cuda.is_available():
         map_location = lambda storage, loc: storage.cuda()
@@ -89,7 +89,7 @@ def train_valid_logreg():
 
 def show_save(valid_csv):
 
-    logreg_model = joblib.load('./model/tfcc_logreg.dat')
+    logreg_model = joblib.load('./MRNet/models/tfcc_logreg.dat')
     x_val = train_valid_logreg()
 
     y_val = pd.read_csv(valid_csv)['LABEL']
@@ -114,7 +114,8 @@ def show_save(valid_csv):
 
 
 if __name__ == '__main__':
-
+    import os
+    print(os.getcwd())
     args = parser.parse_args()
 
     VALID_CSV = Path(args.root, CONFIG['data']['valid_excel'])

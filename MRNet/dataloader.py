@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from data_processing import TFCCDataset
-from torchsample.transforms import RandomRotate, RandomTranslate, RandomFlip
+# from torchsample.transforms import RandomRotate, RandomTranslate, RandomFlip
 
 
 def tfcc_dataloader(train_data, valid_data, train_path, valid_path, batch_size):
@@ -11,9 +11,9 @@ def tfcc_dataloader(train_data, valid_data, train_path, valid_path, batch_size):
     data_transforms = {
         'train': transforms.Compose([
             transforms.Lambda(lambda x: torch.Tensor(x)),
-            RandomRotate(25),
-            RandomTranslate([0.11, 0.11]),
-            RandomFlip(),
+            # RandomRotate(25),
+            # RandomTranslate([0.11, 0.11]),
+            # RandomFlip(),
             transforms.Lambda(lambda x: x.repeat(3, 1, 1, 1).permute(3, 0, 1, 2)),
         ]),
         'val': transforms.Compose([
